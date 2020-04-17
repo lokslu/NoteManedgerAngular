@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+
+body{height: 100%;}
+::-webkit-scrollbar {/*сам скрол бар*/
+    width: 8px;
+    
+  }
+::-webkit-scrollbar-track{ /*трек*/
+      background-color: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb{/*ползунок*/
+      background-color: #cfcfcf;
+      border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-track:hover{/*при наведении на ползунок*/
+    background-color: #ffffff;}
+
+    ::-webkit-scrollbar-thumb:hover {/*при наведении на ползунок*/
+        background-color: #bdbdbd;}
+
+::-webkit-scrollbar-thumb:active{/*ползунок*/
+    background-color: #383838}
