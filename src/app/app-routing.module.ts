@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { RegisterComponent } from './components/register/register.component';
-
-const routes: Routes = [
+ 
+const routes: Routes = [ 
   { path: "", component:HomeComponent},
-  {path: 'register',
-  loadChildren: () => import('../main-module/main-module.module').then(m => m.MainModuleModule)}
+  {path: "Auth",
+  loadChildren: () => import('./moduls/Auth-module/Auth.module').then(m => m.AuthModule)},
+  {path: "user",
+  loadChildren: () => import('./moduls/main-using/main-using.module').then(m => m.MainUsingModule)}
 ];
 
 @NgModule({

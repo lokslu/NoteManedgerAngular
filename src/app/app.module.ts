@@ -1,31 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }   from '@angular/common/http';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgsgModule} from 'ng-sortgrid';//перетягивание
 import { ColorChromeModule } from 'ngx-color/chrome';//выбор цвета
-
-import { AppRoutingModule } from './app-routing.module';
+ 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
-import { RegisterComponent } from './components/register/register.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { NotesComponent } from './components/notes/notes.component';
+import {NavModule } from'./moduls/nav/nav.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
-  declarations: [
+  declarations: [ 
+    
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    RegisterComponent,
-    FooterComponent,
-    NotesComponent
+    HomeComponent
   ],
-  imports: [NgbModule,
+  imports: [
     BrowserModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    NgsgModule,
+    ColorChromeModule,
+    BrowserAnimationsModule,
+    NavModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

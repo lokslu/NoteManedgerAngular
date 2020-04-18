@@ -4,24 +4,24 @@
     class="navbar-toggler collapsed"
     type="button "
     (click)="isCollapsed = !isCollapsed"
-    aria-controls="navbarsExample05"
-    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseBasic"
+    [attr.aria-expanded]="isCollapsed"
     aria-label="Toggle navigation"
   >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="navbar-collapse collapse" [ngbCollapse]="!isCollapsed">
+  <div id="collapseBasic" class="navbar-collapse collapse" [collapse]="!isCollapsed" [isAnimated]="true">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/"
+        <a class="nav-link" routerLink="/"routerLinkActive="router-link-active"
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
-          routerLink="/register"
+          routerLink="/Auth/register"
           routerLinkActive="router-link-active"
           >Sing Up
         </a>

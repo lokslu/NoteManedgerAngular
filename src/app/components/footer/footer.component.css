@@ -1,4 +1,17 @@
   .footer {
-    flex: 0 0 auto;
-  background-color: #23272b;
+   
+
+    color: darkgray;
+  background-color: #000000;
   } 
+  .footer-top
+  {padding-top: 0.5rem;
+    padding-bottom: 0.5rem;}
+  ul{
+    list-style: none;
+  }
+  .social{
+    margin-bottom: 0;
+    text-decoration: none;
+    color: darkgray;
+  }
