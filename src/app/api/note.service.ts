@@ -9,8 +9,8 @@ export class NoteService {
   private strAPI ="http://localhost:5000/api/Note";
   
 
-  getnote(userid:number){
-    return this.http.get(this.strAPI+"/"+userid);
+  getnote(email:string){
+    return this.http.get(this.strAPI+"/"+email);
   }
 
     createnote(note:Note)
@@ -24,7 +24,7 @@ export class NoteService {
     }
     ordering(notes:Note[]){
       
-        return this.http.put(this.strAPI,notes);
+        return this.http.put(this.strAPI+"/ordering",notes);
     }
     deletenote(id:number)
     {

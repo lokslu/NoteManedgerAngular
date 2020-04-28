@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { Note } from '../../Models/note';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-note-edit',
   templateUrl: './note-edit.component.html',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteEditComponent implements OnInit {
 
-  constructor() { }
+  @Input() public  check: boolean;
+  @Input() public note: Note;
 
-  ngOnInit(): void {
+  curnote: Note;
+  constructor(public activeModal: BsModalRef) { }
+
+  ngOnInit(): void 
+  {
+    this.curnote=Object.assign({},this.note);
   }
 
+  changeComplete($event) {
+    this.curnote.color = $event.color.hex;
+  }
+
+  save(): void 
+  {
+    this.check=true;
+    this.activeModal.hide();
+    
+  }
 }

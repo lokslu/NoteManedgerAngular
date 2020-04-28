@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,7 +13,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     FooterComponent],
   imports: [
     CommonModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    RouterModule
 
   ],
   exports:[NavbarComponent,

@@ -1,2 +1,129 @@
 <app-navbar></app-navbar>
-<p>notes works!</p>
+<head>
+  <title>Notes</title>
+</head>
+<div class="container-fluir" style="min-height: 100vh; background-color: #eeeeee;">
+  <div *ngIf="!see" >
+    
+     <svg style="margin-left: auto;
+     margin-right: auto;
+     display: block;
+     padding-top: 15vh"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.0"
+      width="50vh"
+      height="50vh"
+      viewBox="0 0 128 128"
+      xml:space="preserve"
+      smiling="fake"
+    >
+      <g transform="rotate(166.64 64 64)">
+        <path
+          d="M75.4 126.63a11.43 11.43 0 0 1-2.1-22.65 40.9 40.9 0 0 0 30.5-30.6 11.4 11.4 0 1 1 22.27 4.87h.02a63.77 63.77 0 0 1-47.8 48.05v-.02a11.38 11.38 0 0 1-2.93.37z"
+          fill="#4f6c89"
+        ></path>
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 64 64"
+          to="360 64 64"
+          dur="1s"
+          repeatCount="indefinite"
+        ></animateTransform>
+      </g>
+    </svg>
+  </div>
+  <button class="addNote" (click)="addNote(editcomponent)" *ngIf="see">
+    <svg
+      class="bi bi-plus-circle"
+      width="4em"
+      height="4em"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+  <div class="d-flex flex-wrap justify-content-center" *ngIf="see">
+    <div
+      class="fg m-4"
+      *ngFor="let note of notes; let i = index"
+      (click)="open(editcomponent,i)"
+      ngSortgridItem
+      ngSortGridGroup="getting-started"
+      [ngSortGridItems]="notes"
+      (sorted)="applyOrder($event)"
+    >
+      <div
+        class="block"
+        style="height: 30%; overflow: hidden; border-bottom: solid 1px #dddddd;"
+        [style.background-color]="note.color"
+      >
+        <button type="button" class="m-2 close" (click)="delNote($event, i)">
+          &times;
+        </button>
+
+        <h3 style="overflow: hidden;" class="p-3">{{ note.title }}</h3>
+      </div>
+      <div class="m-2" style="height: 50%;">
+        <div class="" style="display: block;">
+          <p class="">{{ note.body }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div >
+    <button class="btn btn-alert" (click)="GetNotes()">попробивать ещё раз</button>
+  </div>
+</div>
+
+<ng-template #editcomponent>
+  <div>
+    <div class="modal-header" [style.background-color]="curnote.color">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input class="form-control" type="text" [(ngModel)]="curnote.title" />
+      <color-chrome
+        [color]="curnote.color"
+        (onChangeComplete)="changeComplete($event)"
+      ></color-chrome>
+      <textarea [(ngModel)]="curnote.body"> </textarea>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</ng-template>
+<app-footer></app-footer>

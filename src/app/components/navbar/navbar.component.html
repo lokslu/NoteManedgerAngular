@@ -11,18 +11,30 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div id="collapseBasic" class="navbar-collapse collapse" [collapse]="!isCollapsed" [isAnimated]="true">
+  <div
+    id="collapseBasic"
+    class="navbar-collapse collapse"
+    [collapse]="!isCollapsed"
+    [isAnimated]="true"
+  >
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/"routerLinkActive="router-link-active"
-          >Home <span class="sr-only">(current)</span></a
-        >
+      <li class="nav-item" *ngIf="app.user!=null">
+        <a class="nav-link" routerLink="/user/notes" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        >Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        >Home</a>
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
           routerLink="/Auth/register"
-          routerLinkActive="router-link-active"
+          routerLinkActive="active"
           >Sing Up
         </a>
       </li>
