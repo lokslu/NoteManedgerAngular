@@ -2,13 +2,48 @@
 <head>
   <title>Notes</title>
 </head>
-<div class="container-fluir" style="min-height: 100vh; background-color: #eeeeee;">
-  <div *ngIf="!see" >
-    
-     <svg style="margin-left: auto;
-     margin-right: auto;
-     display: block;
-     padding-top: 15vh"
+<ng-template #editcomponent>
+  <div>
+    <div class="modal-header" [style.background-color]="curnote.color">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input class="form-control" type="text" [(ngModel)]="curnote.title" />
+      <color-chrome
+        [color]="curnote.color"
+        (onChangeComplete)="changeComplete($event)"
+      ></color-chrome>
+      <textarea [(ngModel)]="curnote.body"> </textarea>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  class="container-fluir"
+  style="min-height: 100vh; background-color: #eeeeee;"
+  [ngSwitch]="state"
+>
+  <div *ngSwitchCase="'loading'">
+    <svg
+      style="
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        padding-top: 15vh;
+      "
       xmlns:svg="http://www.w3.org/2000/svg"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -35,7 +70,11 @@
       </g>
     </svg>
   </div>
-  <button class="addNote" (click)="addNote(editcomponent)" *ngIf="see">
+  <button
+    class="addNote"
+    (click)="addNote(editcomponent)"
+    *ngSwitchCase="'active'"
+  >
     <svg
       class="bi bi-plus-circle"
       width="4em"
@@ -61,11 +100,11 @@
       />
     </svg>
   </button>
-  <div class="d-flex flex-wrap justify-content-center" *ngIf="see">
+  <div class="d-flex flex-wrap justify-content-center" *ngSwitchCase="'active'">
     <div
       class="fg m-4"
       *ngFor="let note of notes; let i = index"
-      (click)="open(editcomponent,i)"
+      (click)="open(editcomponent, i)"
       ngSortgridItem
       ngSortGridGroup="getting-started"
       [ngSortGridItems]="notes"
@@ -89,41 +128,12 @@
       </div>
     </div>
   </div>
-  <div >
-    <button class="btn btn-alert" (click)="GetNotes()">попробивать ещё раз</button>
+  <div *ngSwitchCase="'error'">
+    <button class="btn btn-alert" (click)="GetNotes()">
+      попробивать ещё раз
+    </button>
   </div>
 </div>
 
-<ng-template #editcomponent>
-  <div>
-    <div class="modal-header" [style.background-color]="curnote.color">
-      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        (click)="bsModalRef.hide()"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <input class="form-control" type="text" [(ngModel)]="curnote.title" />
-      <color-chrome
-        [color]="curnote.color"
-        (onChangeComplete)="changeComplete($event)"
-      ></color-chrome>
-      <textarea [(ngModel)]="curnote.body"> </textarea>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="save()"
-      >
-        Save
-      </button>
-    </div>
-  </div>
-</ng-template>
+
 <app-footer></app-footer>

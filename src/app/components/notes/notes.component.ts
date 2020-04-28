@@ -22,7 +22,7 @@ export class NotesComponent implements OnInit {
   curnote: Note;
   curindex: number;
   check: boolean = false;
-  errorCheck: boolean = false;
+  state: string ="loading";
 
   constructor(
     private http: HttpClient,
@@ -34,15 +34,16 @@ export class NotesComponent implements OnInit {
   ) {}
   GetNotes() {
     //Получение масива заметок
+    this.state="loading";
     this.noteService
       .getnote(localStorage.getItem("username"))
       .subscribe((data: Note[]) => {
         this.notes = data;
         this.see = true;
-        this.errorCheck=false;
+        this.state="active";
       }, (error) => {
-        
-        this.errorCheck=true;
+
+        this.state="error";
       });
   }
 
@@ -73,8 +74,7 @@ export class NotesComponent implements OnInit {
         (error) => {
           console.log("Update Note ERROR");
           console.log(error);
-
-          this.see = false;
+          
           this.GetNotes();
         }
       );
@@ -85,14 +85,11 @@ export class NotesComponent implements OnInit {
         //добавление елемента(записки, note) на сервер
         (success) => {
           console.log("Create Note OK");
-          console.log(success);
-          this.see = false;
+          console.log(success);        
           this.GetNotes();
         },
         (error) => {
           console.log(error);
-
-          this.see = false;
           this.GetNotes();
         }
       );
@@ -115,8 +112,6 @@ export class NotesComponent implements OnInit {
         (error) => {
           console.log("Moving Note ERROR");
           console.log(error);
-
-          this.see = false;
           this.GetNotes();
         }
       );
@@ -151,8 +146,6 @@ export class NotesComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-
-        this.see = false;
         this.GetNotes();
       }
     );
