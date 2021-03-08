@@ -13,6 +13,7 @@ import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
     LoginComponent
   ],
   imports: [
+    FormsModule, 
     ReactiveFormsModule,
     CommonModule,
     AuthRoutingModule

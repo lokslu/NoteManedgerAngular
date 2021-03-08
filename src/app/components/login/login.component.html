@@ -1,36 +1,81 @@
 <head>
-    <title>Sing In</title>
-  </head> 
-<div  class="analogbody text-center">  
-      <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign In</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email"  formControlName="email"  id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password"  formControlName="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>  
-      </div> 
-      <button class="btn btn-lg btn-primary btn-block"type="submit" >Sign In</button>
-      <div style="
-      text-align: left;
-      display: flex;
-  "><a style="  
-      margin-left: 2rem;
-      margin-right: auto;
-      margin-top: 0;
-      "
-      routerLink="/"
-      >To back</a>
-  <a style="
-      margin-left: auto;
-      margin-right: 2rem;
-      margin-top: 0;
-      "
-      routerLink="/Auth/register"
-      >Sing Up</a></div>
-      <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
-    </form>
+  <title>Sing In</title>
+</head>
+<div class="analogbody text-center">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign In</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input
+      type="email"
+      formControlName="email"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Email address"
+    />
+     <div style="margin-top: 10px;" *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="alert alert-danger">
+      Invalid email
+    </div> 
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input
+      type="password"
+      formControlName="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+    />
+    <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="alert alert-danger">
+      Enter password
+    </div>
+    <!-- <div class="checkbox mb-3">
+      <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+    </div> -->
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="loginForm.invalid">
+      <div *ngIf="!loading">Sign In</div>
+      <div *ngIf="loading">
+        <svg
+          style="display: rela; margin: 0;"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.0"
+          width="1.5em"
+          height="1.5em"
+          viewBox="0 0 128 128"
+          xml:space="preserve"
+          smiling="fake"
+        >
+          <g transform="rotate(166.64 64 64)">
+            <path
+              d="M75.4 126.63a11.43 11.43 0 0 1-2.1-22.65 40.9 40.9 0 0 0 30.5-30.6 11.4 11.4 0 1 1 22.27 4.87h.02a63.77 63.77 0 0 1-47.8 48.05v-.02a11.38 11.38 0 0 1-2.93.37z"
+              fill="#fff"
+            ></path>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 64 64"
+              to="360 64 64"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </g>
+        </svg>
+      </div>
+    </button>
+    <div style="margin-top: 10px;" *ngIf="error" class="alert alert-danger">
+      Something went wrong. Verify Password or Email
+    </div> 
+    <div style="text-align: left; display: flex;">
+      <a
+        style="margin-left: 2rem; margin-right: auto; margin-top: 0;"
+        routerLink="/"
+        >To back</a
+      >
+      <a
+        style="margin-left: auto; margin-right: 2rem; margin-top: 0;"
+        routerLink="/Auth/register"
+        >Sing Up</a
+      >
+    </div>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+  </form>
 </div>

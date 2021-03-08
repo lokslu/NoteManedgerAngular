@@ -6,23 +6,68 @@
     <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
     
     <label for="firstName" class="sr-only">First Name</label>
-    <input type="text"  formControlName="firstName"  id="firstName" class="form-control I_T" placeholder="First Name" required autofocus>
-    
+    <input type="text"  formControlName="firstName"  id="firstName" class="form-control I_T" placeholder="First Name" >
+    <div  style="margin-top: 10px;" *ngIf="registerForm.controls['firstName'].invalid && registerForm.controls['firstName'].touched" class="alert alert-danger">
+      Required field
+     </div>
     <label for="lastName" class="sr-only">Last Name</label>
-    <input type="text"  formControlName="lastName"  id="lastName" class="form-control I_C" placeholder="Last Name" required >
-    
+    <input type="text"  formControlName="lastName"  id="lastName" class="form-control I_C" placeholder="Last Name"  >
+   
+
     <label for="inputEmail" class="sr-only " >Email address</label>
-    <input type="email"  formControlName="email"  id="inputEmail" class="form-control I_C" placeholder="Email address" required >
-    
+    <input type="email"  formControlName="email"  id="inputEmail" class="form-control I_C" placeholder="Email address"  >
+    <div style="margin-top: 10px;" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched" class="alert alert-danger">
+      Invalid email
+     </div>
+
     <label for="inputPassword" class="sr-only ">Password</label>
-    <input type="password"  formControlName="password" id="inputPassword" class="form-control I_B" placeholder="Password" required>
+    <input type="password"  formControlName="password" id="inputPassword" class="form-control I_B" placeholder="Password" >
+    <div style="margin-top: 10px;" *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched" class="alert alert-danger">
+      Enter password
+     </div>
     
-    <div class="checkbox mb-3">
+    <!-- <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>  
+    </div>  -->
+    <button [disabled]="registerForm.invalid" class="btn btn-lg btn-primary btn-block"type="submit" >
+      <div *ngIf="!registered">Sign Up</div>
+      <div *ngIf="registered">
+        <svg
+          style="
+            margin:0;
+          "
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.0"
+          width="1.5em"
+          height="1.5em"
+          viewBox="0 0 128 128"
+          xml:space="preserve"
+          smiling="fake"
+        >
+          <g transform="rotate(166.64 64 64)">
+            <path
+              d="M75.4 126.63a11.43 11.43 0 0 1-2.1-22.65 40.9 40.9 0 0 0 30.5-30.6 11.4 11.4 0 1 1 22.27 4.87h.02a63.77 63.77 0 0 1-47.8 48.05v-.02a11.38 11.38 0 0 1-2.93.37z"
+              fill="#fff"
+            ></path>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 64 64"
+              to="360 64 64"
+              dur="1s"
+              repeatCount="indefinite"
+            ></animateTransform>
+          </g>
+        </svg>
+      </div>
+    </button>
+    <div style="margin-top: 10px;" *ngIf="error" class="alert alert-danger">
+      Something went wrong. Check your internet connection or use a different email address
     </div> 
-    <button class="btn btn-lg btn-primary btn-block"type="submit" >Sign Up</button>
     <div style="
     text-align: left;
     display: flex;

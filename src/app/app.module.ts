@@ -15,6 +15,7 @@ import {NoteService } from 'src/app/api/note.service';
 
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 
+
 @NgModule({
   declarations: [ 
     

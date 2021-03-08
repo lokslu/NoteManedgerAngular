@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<head>
+  <title>Profile</title>
+</head>
+<div class="container" style="height: 100vh;">
+ <div style="font-size: 2rem;
+ margin-top: 2rem;
+ border: solid 1px #999;
+ border-radius: 1rem;">
+   <div style="margin:1rem;">
+
+   <div>
+    <span>Firt name <strong>{{ app.user?.firstname }}</strong></span>
+  </div>
+  <div>
+    <span>Last name <strong>{{ app.user?.lastname }}</strong></span>
+  </div>
+  
+  <div>
+    <span>Email <strong>{{ app.user?.email }}</strong></span>
+  </div>
+</div>
+</div>
+</div>
+<app-footer></app-footer>

@@ -6,9 +6,9 @@ import { Note } from '../Models/note';
 export class NoteService {
   constructor(private http: HttpClient) {}
   
-  private strAPI ="http://localhost:5000/api/Note";
+  private strAPI ="https://notemanedgerapi.somee.com/api/Note";
   
-
+    
   getnote(email:string){
     return this.http.get(this.strAPI+"/"+email);
   }

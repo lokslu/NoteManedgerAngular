@@ -19,7 +19,8 @@
           you.
         </p>
         <p class="lead">
-          <a routerLink="/Auth/register" class="btn btn-lg btn-secondary">Sing Up</a>
+          <a routerLink="/user/notes" class="btn btn-lg btn-secondary" *ngIf="app.checkUser()">Your notes</a>
+          <a routerLink="/Auth/register" class="btn btn-lg btn-secondary" *ngIf="!app.checkUser()">Sing Up</a>
         </p>
       </main>
     </div>

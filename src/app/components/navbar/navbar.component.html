@@ -1,3 +1,20 @@
+<ng-template #temlogout>
+  <div class="modal-body text-center">
+    <p>Do you really want to go out</p>
+    <button type="button" class="btn btn-default" (click)="logout()">
+      Yes
+    </button>
+    <button
+      type="button"
+      class="btn "
+      style="background-color: #324e6a;
+      color: #fff;"
+      (click)="logoutModalRef.hide()"
+    >
+      No
+    </button>
+  </div>
+</ng-template>
 <nav class="navbar shadow-sm navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/">Note Manedger</a>
   <button
@@ -18,37 +35,62 @@
     [isAnimated]="true"
   >
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item" *ngIf="app.user!=null">
-        <a class="nav-link" routerLink="/user/notes" 
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
-        >Notes</a>
+      <li class="nav-item" *ngIf="app.checkUser()">
+        <a
+          class="nav-link"
+          routerLink="/user/profile"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Profile</a
+        >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/" 
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
-        >Home</a>
+      <li class="nav-item" *ngIf="app.checkUser()">
+        <a
+          class="nav-link"
+          routerLink="/user/notes"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Notes</a
+        >
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
-          routerLink="/Auth/register"
+          routerLink="/"
           routerLinkActive="active"
-          >Sing Up
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="!app.checkUser()">
+        <a class="nav-link" routerLink="/Auth/login" routerLinkActive="active"
+          >Sing In
         </a>
       </li>
-      <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li> -->
-      <!-- <li ngbDropdown class="nav-item">
-          <a ngbDropdownToggle  class="nav-link "   aria-expanded="false">Dropdown</a>
-          <div ngbDropdownMenu aria-labelledby="dropdown05">
-            <a ngbDropdownItem href="#">Action</a>
-            <a ngbDropdownItem href="#">Another action</a>
-            <a ngbDropdownItem href="#">Something else here</a>
-          </div>
-        </li> -->
+      <li class="nav-item" *ngIf="app.checkUser()">
+        <a
+          (click)="Qlogout(temlogout)"
+          class="nav-link"
+          style="cursor: pointer;"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="mdi-logout"
+            width="1.5em"
+            height="1.5em"
+            viewBox="0 0 24 24"
+            class="svgLogout"
+
+          >
+            <path
+              fill="#ffffff57"
+              d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"
+            />
+          </svg>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

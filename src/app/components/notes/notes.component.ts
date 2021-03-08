@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { NgsgOrderChange } from "ng-sortgrid/lib/shared/ngsg-order-change.model.d";
+import { NgsgOrderChange } from "ng-sortgrid/lib/shared/ngsg-order-change.model";
 
 import { AuthService } from "src/app/api/auth.service";
 import { NoteService } from "src/app/api/note.service";
@@ -54,6 +54,7 @@ export class NotesComponent implements OnInit {
   open(template: TemplateRef<any>, i: number) {
     this.curindex=i;
     this.bsModalRef = this.modalService.show(template);
+    this.bsModalRef.setClass("modal-lg");
     this.curnote = Object.assign({}, this.notes[i]);
   }
 
@@ -129,6 +130,7 @@ export class NotesComponent implements OnInit {
     };
     this.check=true;
     this.bsModalRef = this.modalService.show(template);
+    this.bsModalRef.setClass("modal-lg");
 
   
   }

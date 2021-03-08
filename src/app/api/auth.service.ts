@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthService {
 
-  private apiString = 'http://localhost:5000/api/';
+  private apiString = 'https://notemanedgerapi.somee.com/api/';
   public userProfile: any;
   public userInfo: any;
   constructor(private router: Router, private httpClient: HttpClient) {}

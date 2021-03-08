@@ -4,15 +4,18 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
 @NgModule({
   declarations: [ 
     NavbarComponent,
-    FooterComponent],
+    FooterComponent
+  ],
   imports: [
     CommonModule,
+    ModalModule.forRoot(),
     CollapseModule.forRoot(),
     RouterModule
 
