@@ -13,7 +13,6 @@ export class HeaderInterceptor implements HttpInterceptor {
                 'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
                 'content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
-                 
             }
             
         });
